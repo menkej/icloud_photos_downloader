@@ -28,9 +28,9 @@ def send_2sa_notification(
     date = datetime.datetime.now().strftime("%d/%m/%Y %H:%M")
 
     message_text = """Hello,
-
 Two-step authentication has expired for the icloud_photos_downloader script.
-Please log in to your server and run the script manually to update two-step authentication."""
+Please log in to your server and run the script manually to update two-step
+authentication."""
 
     msg = "From: %s\nTo: %s\nSubject: %s\nDate: %s\n\n%s" % (
         "iCloud Photos Downloader <" + from_addr + ">",

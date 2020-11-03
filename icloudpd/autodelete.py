@@ -10,7 +10,8 @@ def autodelete_photos(icloud, folder_structure, directory):
     """
     Scans the "Recently Deleted" folder and deletes any matching files
     from the download directory.
-    (I.e. If you delete a photo on your phone, it's also deleted on your computer.)
+    (I.e. If you delete a photo on your phone, it's also deleted on your
+    computer.)
     """
     logger = setup_logger()
     logger.info("Deleting any files found in 'Recently Deleted'...")

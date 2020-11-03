@@ -109,7 +109,8 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 )
 @click.option(
     "--auto-delete",
-    help='Scans the "Recently Deleted" folder and deletes any files found in there. '
+    help='Scans the "Recently Deleted" folder and deletes any files found in '
+    + "there. "
     + "(If you restore the photo in iCloud, it will be downloaded again.)",
     is_flag=True,
 )
@@ -123,7 +124,8 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
 @click.option(
     "--folder-structure",
     help="Folder structure (default: {:%Y/%m/%d}). "
-    "If set to 'none' all photos will just be placed into the download directory",
+    "If set to 'none' all photos will just be placed into the download"
+    " directory",
     metavar="<folder_structure>",
     default="{:%Y/%m/%d}",
 )
@@ -182,14 +184,17 @@ CONTEXT_SETTINGS = dict(help_option_names=["-h", "--help"])
     type=click.Choice(["debug", "info", "error"]),
     default="debug",
 )
-@click.option("--no-progress-bar",
-              help="Disables the one-line progress bar and prints log messages on separate lines "
-              "(Progress bar is disabled by default if there is no tty attached)",
-              is_flag=True,
-              )
+@click.option(
+    "--no-progress-bar",
+    help="Disables the one-line progress bar and prints log messages on "
+    "separate lines (Progress bar is disabled by default if there is no "
+    "tty attached)",
+    is_flag=True,
+)
 @click.option(
     "--threads-num",
-    help="Number of cpu threads -- deprecated. To be removed in future version",
+    help="Number of cpu threads "
+    "-- deprecated. to be removed in future version",
     type=click.IntRange(1),
     default=1,
 )
@@ -422,7 +427,8 @@ def main(
                   "https://gist.github.com")
             print(
                 "Then create an issue on GitHub: "
-                "https://github.com/icloud-photos-downloader/icloud_photos_downloader/issues")
+                "https://github.com/"
+                "icloud-photos-downloader/icloud_photos_downloader/issues")
             print(
                 "Include a link to the Gist in your issue, so that we can "
                 "see what went wrong.\n")
@@ -443,7 +449,8 @@ def main(
 
         file_exists = os.path.isfile(download_path)
         if not file_exists and download_size == "original":
-            # Deprecation - We used to download files like IMG_1234-original.jpg,
+            # Deprecation!
+            # We used to download files like IMG_1234-original.jpg,
             # so we need to check for these.
             # Now we match the behavior of iCloud for Windows: IMG_1234.jpg
             original_download_path = ("-%s." % size).join(
@@ -486,7 +493,8 @@ def main(
 
                 if download_result:
                     if set_exif_datetime and photo.filename.lower().endswith(
-                            (".jpg", ".jpeg")) and not exif_datetime.get_photo_exif(download_path):
+                        (".jpg", ".jpeg")) and not \
+                            exif_datetime.get_photo_exif(download_path):
                         # %Y:%m:%d looks wrong but it's the correct format
                         date_str = created_date.strftime(
                             "%Y:%m:%d %H:%M:%S")
@@ -555,8 +563,8 @@ def main(
         try:
             if should_break(consecutive_files_found):
                 logger.tqdm_write(
-                    "Found %d consecutive previously downloaded photos. Exiting" %
-                    until_found)
+                    "Found %d consecutive previously downloaded photos. "
+                    "Exiting" % until_found)
                 break
             item = next(photos_iterator)
             download_photo(consecutive_files_found, item)

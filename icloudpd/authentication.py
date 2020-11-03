@@ -72,8 +72,8 @@ def request_2sa(icloud, logger):
                 devices_count))
 
     if device_index == devices_count:
-        # We're using the 2FA code that was automatically sent to the user's device,
-        # so can just use an empty dict()
+        # We're using the 2FA code that was automatically sent to the user's
+        # device, so can just use an empty dict()
         device = dict()
     else:
         device = devices[device_index]
