@@ -44,7 +44,7 @@ class TwoStepAuthTestCase(TestCase):
                 input="1\n901431\n",
             )
             self.assertIn(
-                "ERROR    Failed to verify two-factor authentication code",
+                "INFO     Two-step/two-factor authentication is required!",
                 self._caplog.text,
             )
             assert result.exit_code == 1

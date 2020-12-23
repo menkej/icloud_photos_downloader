@@ -655,7 +655,7 @@ class DownloadPhotoTestCase(TestCase):
             # Pass fixed client ID via environment variable
 
             def mock_raise_response_error():
-                raise PyiCloudAPIResponseError("Api Error", 100)
+                raise PyiCloudAPIResponseException("Api Error", 100)
 
             with mock.patch.object(PhotosService, "_fetch_folders") as pa_photos_request:
                 pa_photos_request.side_effect = mock_raise_response_error
